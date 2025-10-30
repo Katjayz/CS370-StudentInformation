@@ -1,4 +1,4 @@
-package com.example.StudentInformation.Controller;
+package com.example.StudentInformation.controller;
 
 import org.springframework.web.bind.annotation.*;
 
