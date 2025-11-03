@@ -36,7 +36,7 @@ public class UserDAO {
     } 
 
      public Student checkStudent(int id) {
-        String sql = "SELECT * FROM STUDENT WHERE STUDENT_ID = " + id;
+        String sql = "SELECT * FROM STUDENT WHERE STUDENT_ID = ? ";
         return jdbcTemplate.queryForObject(sql, (rs, rowNum) ->
             new Student(rs.getString("STUDENT_EMAIL"), rs.getInt("STUDENT_ID"), rs.getString("STUDENT_FNAME"), 
                     rs.getString("STUDENT_LNAME"), rs.getString("STUDENT_ADDRESS"), rs.getString("STUDENT_PHONE")    
