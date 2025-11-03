@@ -54,4 +54,32 @@ public class UserDAO {
         );
     }  
 
+     public Student getStudent(int id) {
+        String sql = "SELECT * FROM STUDENT join ADMINISTRATION USING (STUDENT_ID)  WHERE STUDENT_ID = " + id ;
+        return jdbcTemplate.queryForObject(sql, (rs, rowNum) ->
+            new Student(rs.getString("STUDENT_EMAIL"), rs.getInt("STUDENT_ID"), rs.getString("STUDENT_FNAME"), 
+                    rs.getString("STUDENT_LNAME"), rs.getString("STUDENT_ADDRESS"), rs.getString("STUDENT_PHONE"), 
+                    rs.getDouble("STUDENT_GPA"), rs.getInt("STUDENT_CREDITS"), rs.getDouble("STUDENT_BALANCE")    
+            )
+        );
+    } 
+
+     public List<Student> getStudentList() {
+        String sql = "SELECT * FROM STUDENT join ADMINISTRATION USING (STUDENT_ID) ";
+        return jdbcTemplate.query(sql, (rs, rowNum) ->
+            new Student(rs.getString("STUDENT_EMAIL"), rs.getInt("STUDENT_ID"), rs.getString("STUDENT_FNAME"), 
+                    rs.getString("STUDENT_LNAME"), rs.getString("STUDENT_ADDRESS"), rs.getString("STUDENT_PHONE"), 
+                    rs.getDouble("STUDENT_GPA"), rs.getInt("STUDENT_CREDITS"), rs.getDouble("STUDENT_BALANCE")    
+            )
+        );
+    } 
+
+    public void updateStudent(Student student) {
+        String studentSql = "UPDATE STUDENT SET STUDENT_FNAME = ?, STUDENT_LNAME = ?, STUDENT_EMAIL = ?, STUDENT_ADDRESS = ?, STUDENT_PHONE = ? WHERE STUDENT_ID = ?";
+        jdbcTemplate.update(studentSql,  student.getFirstName(), student.getLastName(), student.getEmail(),  student.getAddress(), student.getPhone(), student.getId());
+        
+        String administrationSql = "UPDATE ADMINISTRATION SET  STUDENT_GPA = ?, STUDENT_BALANCE = ?, STUDENT_CREDITS=? WHERE STUDENT_ID = ? " ;
+        jdbcTemplate.update(administrationSql, student.getGpa(), student.getBalance(), student.getCredits(), student.getId());
+    }
+
 }

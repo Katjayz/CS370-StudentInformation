@@ -40,6 +40,18 @@ public class Student {
         this.balance = balance;
     }
 
+    public Student(String email, int id, String firstName, String lastName, String address, String phone, Double gpa, int credits, double balance) {
+        this.email = email;
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phone = phone;
+        this.gpa = gpa;
+        this.credits = credits;
+        this.balance = balance;
+    }
+
     public String getEmail() {
         return this.email;
     }

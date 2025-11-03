@@ -27,7 +27,8 @@ public class RoleController {
         if (user.size() < 1) {
             return null;
         } else {
-            String token = roleService.generateToken(email, Role.FACULTY);
+            int id = user.get(0).getId();
+            String token = roleService.generateToken(String.valueOf(id), Role.FACULTY);
             return ResponseEntity.ok(Map.of(
             "token", token,
             "role", Role.FACULTY
@@ -41,7 +42,8 @@ public class RoleController {
         if (user.size() < 1) {
             return null;
         } else {
-            String token = roleService.generateToken(email, Role.STUDENT);
+            int id = user.get(0).getId();
+            String token = roleService.generateToken(String.valueOf(id), Role.STUDENT);
             return ResponseEntity.ok(Map.of(
                 "token", token,
                 "role", Role.STUDENT
