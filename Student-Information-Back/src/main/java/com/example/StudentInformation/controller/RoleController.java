@@ -1,4 +1,4 @@
-package com.example.StudentInformation.controller;
+package com.example.StudentInformation.Controller;
 import com.example.StudentInformation.Dao.UserDAO;
 import com.example.StudentInformation.modals.*;
 import com.example.StudentInformation.service.*;
