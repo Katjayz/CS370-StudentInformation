@@ -1,4 +1,4 @@
-package com.example.StudentInformation.controller;
+package com.example.StudentInformation.Controller;
 import com.example.StudentInformation.Dao.UserDAO;
 import com.example.StudentInformation.modals.*;
 import com.example.StudentInformation.service.*;
@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 public class AddStudentController {
@@ -27,5 +28,26 @@ public class AddStudentController {
             success = true;
         }
         return success;
-    } 
+    }
+    
+    @GetMapping("/api/students")
+    public List<Student> getAllStudents() {
+        return userDAO.getAllStudents();
+    }
+
+    @GetMapping("/api/students/{id}")
+    public Student getStudentById(@PathVariable int id) {
+        return userDAO.checkStudent(id);
+    }
+
+    @PutMapping("/api/students/{id}")
+    public ResponseEntity<String> updateStudent(@PathVariable int id, @RequestBody Student student) {
+        boolean updated = userDAO.updateStudent(id, student);
+        if (updated) {
+            return ResponseEntity.ok("Student updated successfully.");
+        } else {
+            return ResponseEntity.status(404).body("Student not found.");
+        }
+    }
+
 }

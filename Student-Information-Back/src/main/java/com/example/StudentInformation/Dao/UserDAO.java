@@ -1,13 +1,11 @@
 package com.example.StudentInformation.Dao;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
 import com.example.StudentInformation.modals.Faculty;
 import com.example.StudentInformation.modals.Student;
-
 import java.util.List;
 import java.util.Map;
-
 
 @Repository
 public class UserDAO {
@@ -32,7 +30,8 @@ public class UserDAO {
         return jdbcTemplate.query(sql, (rs, rowNum) ->
             new Student(rs.getString("STUDENT_EMAIL"), rs.getInt("STUDENT_ID"), rs.getString("STUDENT_FNAME"), 
                     rs.getString("STUDENT_LNAME"), rs.getString("STUDENT_ADDRESS"), rs.getString("STUDENT_PHONE")    
-            )
+            ),
+            email, password
         );
     } 
 
@@ -41,7 +40,8 @@ public class UserDAO {
         return jdbcTemplate.queryForObject(sql, (rs, rowNum) ->
             new Student(rs.getString("STUDENT_EMAIL"), rs.getInt("STUDENT_ID"), rs.getString("STUDENT_FNAME"), 
                     rs.getString("STUDENT_LNAME"), rs.getString("STUDENT_ADDRESS"), rs.getString("STUDENT_PHONE")    
-            )
+            ),
+            id
         );
     } 
     
@@ -50,9 +50,24 @@ public class UserDAO {
         return jdbcTemplate.query(sql, (rs, rowNum) ->
             new Faculty(rs.getString("FACULTY_EMAIL"), rs.getInt("FACULTY_ID"), rs.getString("FACULTY_FNAME"), 
                     rs.getString("FACULTY_LNAME")  
+            ),
+            email, password
+        );
+    }
+
+    public List<Student> getAllStudents() {
+        String sql = "SELECT * FROM STUDENT";
+        return jdbcTemplate.query(sql, (rs, rowNum) ->
+            new Student(
+                rs.getString("STUDENT_EMAIL"),
+                rs.getInt("STUDENT_ID"),
+                rs.getString("STUDENT_FNAME"),
+                rs.getString("STUDENT_LNAME"),
+                rs.getString("STUDENT_ADDRESS"),
+                rs.getString("STUDENT_PHONE")
             )
         );
-    }  
+    }
 
      public Student getStudent(int id) {
         String sql = "SELECT * FROM STUDENT join ADMINISTRATION USING (STUDENT_ID)  WHERE STUDENT_ID = " + id ;
@@ -72,14 +87,17 @@ public class UserDAO {
                     rs.getDouble("STUDENT_GPA"), rs.getInt("STUDENT_CREDITS"), rs.getDouble("STUDENT_BALANCE")    
             )
         );
-    } 
-
-    public void updateStudent(Student student) {
-        String studentSql = "UPDATE STUDENT SET STUDENT_FNAME = ?, STUDENT_LNAME = ?, STUDENT_EMAIL = ?, STUDENT_ADDRESS = ?, STUDENT_PHONE = ? WHERE STUDENT_ID = ?";
-        jdbcTemplate.update(studentSql,  student.getFirstName(), student.getLastName(), student.getEmail(),  student.getAddress(), student.getPhone(), student.getId());
-        
-        String administrationSql = "UPDATE ADMINISTRATION SET  STUDENT_GPA = ?, STUDENT_BALANCE = ?, STUDENT_CREDITS=? WHERE STUDENT_ID = ? " ;
-        jdbcTemplate.update(administrationSql, student.getGpa(), student.getBalance(), student.getCredits(), student.getId());
     }
+
+    public boolean updateStudent(Student student) {
+        String sql = "UPDATE STUDENT SET STUDENT_FNAME = ?, STUDENT_LNAME = ?, STUDENT_EMAIL = ?, STUDENT_ADDRESS = ?, STUDENT_PHONE = ? WHERE STUDENT_ID = ?";
+        int rows = jdbcTemplate.update(sql, student.getFirstName(), student.getLastName(), student.getEmail(),
+                                       student.getAddress(), student.getPhone(), student.getId());
+        
+                                       String administrationSql = "UPDATE ADMINISTRATION SET  STUDENT_GPA = ?, STUDENT_BALANCE = ?, STUDENT_CREDITS=? WHERE STUDENT_ID = ? " ;
+        jdbcTemplate.update(administrationSql, student.getGpa(), student.getBalance(), student.getCredits(), student.getId());
+        return rows > 0;
+    }
+
 
 }
