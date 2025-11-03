@@ -8,9 +8,36 @@ public class Student {
     private String lastName;
     private String address;
     private String phone;
+    private String password;
+    private Double gpa;
+    private int credits;
+    private double balance;
+
+    public Student() {
+        
+    }
+
     
     public Student(String email, int id, String firstName, String lastName, String address, String phone) {
         this.email = email;
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phone = phone;
+    }
+
+     public Student(String email, int id, String firstName, String lastName, String address, String phone, String password, Double gpa, int credits, double balance) {
+        this.email = email;
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phone = phone;
+        this.password = password;
+        this.gpa = gpa;
+        this.credits = credits;
+        this.balance = balance;
     }
 
     public String getEmail() {
@@ -59,5 +86,36 @@ public class Student {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+     public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public double getGpa() {
+        return this.gpa;
+    }
+
+    public void setGpa(double gpa) {
+        this.gpa = gpa;
+    }
+
+    public int getCredits(){
+        return this.credits;
+    }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
+    }
+    public double getBalance() {
+        return this.balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 }

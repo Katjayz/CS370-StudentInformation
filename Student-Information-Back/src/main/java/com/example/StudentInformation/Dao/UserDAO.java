@@ -17,9 +17,28 @@ public class UserDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    public void addStudent(Student student) {
+        String studentSql = "INSERT INTO STUDENT (STUDENT_ID, STUDENT_FNAME, STUDENT_LNAME, STUDENT_EMAIL, STUDENT_PASSWORD, STUDENT_ADDRESS, STUDENT_PHONE) VALUES " +
+        " (?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(studentSql, student.getId(), student.getFirstName(), student.getLastName(), student.getEmail(), student.getPassword(), student.getAddress(), student.getPhone());
+        
+        String administrationSql = "INSERT INTO ADMINISTRATION (STUDENT_ID, STUDENT_GPA, STUDENT_BALANCE, STUDENT_CREDITS) \r\n" +
+                        "VALUES (?, ?, ?, ?)" ;
+        jdbcTemplate.update(administrationSql, student.getId(), student.getGpa(), student.getBalance(), student.getCredits());
+    }
+
     public List<Student> getStudentLogin(String email, String password) {
         String sql = "SELECT * FROM STUDENT WHERE STUDENT_EMAIL = '" + email + "' AND STUDENT_PASSWORD = '" + password + "'";
         return jdbcTemplate.query(sql, (rs, rowNum) ->
+            new Student(rs.getString("STUDENT_EMAIL"), rs.getInt("STUDENT_ID"), rs.getString("STUDENT_FNAME"), 
+                    rs.getString("STUDENT_LNAME"), rs.getString("STUDENT_ADDRESS"), rs.getString("STUDENT_PHONE")    
+            )
+        );
+    } 
+
+     public Student checkStudent(int id) {
+        String sql = "SELECT * FROM STUDENT WHERE STUDENT_ID = " + id;
+        return jdbcTemplate.queryForObject(sql, (rs, rowNum) ->
             new Student(rs.getString("STUDENT_EMAIL"), rs.getInt("STUDENT_ID"), rs.getString("STUDENT_FNAME"), 
                     rs.getString("STUDENT_LNAME"), rs.getString("STUDENT_ADDRESS"), rs.getString("STUDENT_PHONE")    
             )
