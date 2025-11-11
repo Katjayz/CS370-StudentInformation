@@ -31,6 +31,8 @@ public class StudentsController {
 
     @PostMapping("/api/updateStudent")
     public void updateStudent( @RequestBody Student student) {
-        userDAO.updateStudent(student);
+        if ( student.verifyStudent() != false ) {
+           userDAO.updateStudent(student);
+        }
     } 
 }

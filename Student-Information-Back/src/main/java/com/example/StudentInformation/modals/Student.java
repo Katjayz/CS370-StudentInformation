@@ -130,4 +130,16 @@ public class Student {
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
+    public boolean verifyStudent() {
+        if ( this.getEmail() == null || !this.getEmail().endsWith("@uwec.edu")
+            || this.getGpa() < 0 || this.getGpa() > 4
+            || this.getFirstName() == null || this.getFirstName().length() < 2 
+            || this.getLastName() == null || this.getLastName().length() < 2
+            || this.getAddress() == null || this.getAddress().length() < 1
+            || this.getPhone() == null || this.getPhone().length() != 10) {
+            return false;
+        }
+        return true;
+    }
 }

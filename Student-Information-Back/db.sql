@@ -49,20 +49,20 @@ CREATE TABLE ENROLLMENT (
 /* Insert student data */
 INSERT INTO STUDENT (STUDENT_ID, STUDENT_FNAME, STUDENT_LNAME, STUDENT_EMAIL, STUDENT_PASSWORD, STUDENT_ADDRESS, STUDENT_PHONE)
 VALUES 
-(1001, 'Alice', 'Johnson', 'alice.johnson@email.com', 'Pass@123', '123 Maple St', '555-123-4567'),
-(1002, 'Brian', 'Smith', 'brian.smith@email.com', 'Qwerty@9', '456 Oak Ave', '555-234-5678'),
-(1003, 'Catherine', 'Lee', 'catherine.lee@email.com', 'CatLee!22', '789 Pine Rd', '555-345-6789'),
-(1004, 'David', 'Martinez', 'david.martinez@email.com', 'DMart@45', '321 Birch Blvd', '555-456-7890'),
-(1005, 'Ella', 'Brown', 'ella.brown@email.com', 'Brownie#1', '654 Cedar Ct', '555-567-8901'),
-(1006, 'Frank', 'Davis', 'frank.davis@email.com', 'FrankD99', '987 Walnut Dr', '555-678-9012'),
-(1007, 'Grace', 'Wilson', 'grace.wilson@email.com', 'Grace#2024', '159 Elm St', '555-789-0123'),
-(1008, 'Henry', 'Lopez', 'henry.lopez@email.com', 'HLopez!77', '753 Spruce Ln', '555-890-1234'),
-(1009, 'Isabella', 'Clark', 'isabella.clark@email.com', 'Isa@777', '852 Chestnut Ave', '555-901-2345'),
-(1010, 'Jack', 'Hall', 'jack.hall@email.com', 'JHall2025', '951 Poplar Way', '555-012-3456'),
-(1011, 'Karen', 'Garcia', 'karen.garcia@email.com', 'KGarcia@1', '147 Sycamore St', '555-678-2345'),
-(1012, 'Liam', 'Anderson', 'liam.anderson@email.com', 'LiamA@88', '258 Willow Rd', '555-789-3456'),
-(1013, 'Mia', 'Thompson', 'mia.thompson@email.com', 'MiaT#33', '369 Redwood Ln', '555-890-4567'),
-(1014, 'Noah', 'Bennett', 'noah.bennett@email.com', 'NoahB@22', '741 Hickory Pl', '555-901-5678');
+(1001, 'Alice', 'Johnson', 'alice.johnson@uwec.edu', 'Pass@123', '123 Maple St', '555-123-4567'),
+(1002, 'Brian', 'Smith', 'brian.smith@uwec.edu', 'Qwerty@9', '456 Oak Ave', '555-234-5678'),
+(1003, 'Catherine', 'Lee', 'catherine.lee@uwec.edu', 'CatLee!22', '789 Pine Rd', '555-345-6789'),
+(1004, 'David', 'Martinez', 'david.martinez@uwec.edu', 'DMart@45', '321 Birch Blvd', '555-456-7890'),
+(1005, 'Ella', 'Brown', 'ella.brown@uwec.edu', 'Brownie#1', '654 Cedar Ct', '555-567-8901'),
+(1006, 'Frank', 'Davis', 'frank.davis@uwec.edu', 'FrankD99', '987 Walnut Dr', '555-678-9012'),
+(1007, 'Grace', 'Wilson', 'grace.wilson@uwec.edu', 'Grace#2024', '159 Elm St', '555-789-0123'),
+(1008, 'Henry', 'Lopez', 'henry.lopez@uwec.edu', 'HLopez!77', '753 Spruce Ln', '555-890-1234'),
+(1009, 'Isabella', 'Clark', 'isabella.clark@uwec.edu', 'Isa@777', '852 Chestnut Ave', '555-901-2345'),
+(1010, 'Jack', 'Hall', 'jack.hall@uwec.edu', 'JHall2025', '951 Poplar Way', '555-012-3456'),
+(1011, 'Karen', 'Garcia', 'karen.garcia@uwec.edu', 'KGarcia@1', '147 Sycamore St', '555-678-2345'),
+(1012, 'Liam', 'Anderson', 'liam.anderson@uwec.edu', 'LiamA@88', '258 Willow Rd', '555-789-3456'),
+(1013, 'Mia', 'Thompson', 'mia.thompson@uwec.edu', 'MiaT#33', '369 Redwood Ln', '555-890-4567'),
+(1014, 'Noah', 'Bennett', 'noah.bennett@uwec.edu', 'NoahB@22', '741 Hickory Pl', '555-901-5678');
 
 /* Insert administration data */
 INSERT INTO ADMINISTRATION (STUDENT_ID, STUDENT_GPA, STUDENT_BALANCE, STUDENT_CREDITS) VALUES
@@ -83,9 +83,9 @@ INSERT INTO ADMINISTRATION (STUDENT_ID, STUDENT_GPA, STUDENT_BALANCE, STUDENT_CR
 
 /* Insert faculty data */
 INSERT INTO FACULTY (FACULTY_ID, FACULTY_FNAME, FACULTY_LNAME, FACULTY_EMAIL, FACULTY_PASSWORD) VALUES
-(5001, 'John', 'Smith', 'john.smith@email.com', 'JohnsP@$$word'),
-(5002, 'Jane', 'Goodall', 'jane.goodall@email.com', 'MoNkEyBuSiNeSs!'),
-(5003, 'Jordan', 'Robinson', 'jordan.robinson@email.com', 'Password?');
+(5001, 'John', 'Smith', 'john.smith@uwec.edu', 'JohnsP@$$word'),
+(5002, 'Jane', 'Goodall', 'jane.goodall@uwec.edu', 'MoNkEyBuSiNeSs!'),
+(5003, 'Jordan', 'Robinson', 'jordan.robinson@uwec.edu', 'Password?');
 
 /* Sample query */
 SELECT 
