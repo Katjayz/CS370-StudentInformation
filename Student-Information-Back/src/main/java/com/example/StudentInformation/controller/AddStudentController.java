@@ -25,6 +25,9 @@ public class AddStudentController {
         if ( student.verifyStudent() == false ) {
             return false;
         }
+        if ( student.getId() > 9999 || student.getId() < 999 ) {
+            return false;
+        }
         userDAO.addStudent(student);
         Student testStudent = userDAO.checkStudent(student.getId());
         if (student.getId() == testStudent.getId()) {
